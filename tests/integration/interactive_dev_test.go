@@ -37,7 +37,7 @@ var _ = Describe("odo dev interactive command tests", func() {
 						HaveLen(2),
 						ContainElements("requirements.txt", "wsgi.py")))
 			})
-			It("should run alizer to download devfile successfully even with -v flag", func() {
+			FIt("should run alizer to download devfile successfully even with -v flag", func() {
 
 				language := "Python"
 				projectType := "Python"
@@ -62,6 +62,8 @@ var _ = Describe("odo dev interactive command tests", func() {
 
 						helper.ExpectString(ctx, "Enter component name")
 						helper.SendLine(ctx, "my-app")
+
+						commonVar.CliRunner.EnsurePodIsUp("default", "app")
 
 						helper.ExpectString(ctx, "[Ctrl+c] - Exit")
 						ctx.StopCommand()
@@ -96,7 +98,8 @@ var _ = Describe("odo dev interactive command tests", func() {
 						helper.ExpectString(ctx, "Enter component name")
 						helper.SendLine(ctx, "my-app")
 
-						helper.ExpectString(ctx, "[Ctrl+c] - Exit")
+
+		 			        helper.ExpectString(ctx, "[Ctrl+c] - Exit")
 						ctx.StopCommand()
 					})
 
