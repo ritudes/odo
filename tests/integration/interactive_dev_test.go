@@ -37,7 +37,7 @@ var _ = Describe("odo dev interactive command tests", func() {
 						HaveLen(2),
 						ContainElements("requirements.txt", "wsgi.py")))
 			})
-			FIt("should run alizer to download devfile successfully even with -v flag", func() {
+			It("should run alizer to download devfile successfully even with -v flag", func() {
 
 				language := "Python"
 				projectType := "Python"
@@ -63,7 +63,8 @@ var _ = Describe("odo dev interactive command tests", func() {
 						helper.ExpectString(ctx, "Enter component name")
 						helper.SendLine(ctx, "my-app")
 
-						commonVar.CliRunner.EnsurePodIsUp("default", "app")
+						helper.ExpectString(ctx, "Pod is Pending")
+						commonVar.CliRunner.EnsurePodIsUp(commonVar.Project, "my-app")
 
 						helper.ExpectString(ctx, "[Ctrl+c] - Exit")
 						ctx.StopCommand()
@@ -98,8 +99,10 @@ var _ = Describe("odo dev interactive command tests", func() {
 						helper.ExpectString(ctx, "Enter component name")
 						helper.SendLine(ctx, "my-app")
 
+						helper.ExpectString(ctx, "Pod is Pending")
+						commonVar.CliRunner.EnsurePodIsUp(commonVar.Project, "my-app")
 
-		 			        helper.ExpectString(ctx, "[Ctrl+c] - Exit")
+						helper.ExpectString(ctx, "[Ctrl+c] - Exit")
 						ctx.StopCommand()
 					})
 
@@ -139,6 +142,9 @@ var _ = Describe("odo dev interactive command tests", func() {
 						helper.ExpectString(ctx, "Enter component name")
 						helper.SendLine(ctx, "my-app")
 
+						helper.ExpectString(ctx, "Pod is Pending")
+						commonVar.CliRunner.EnsurePodIsUp(commonVar.Project, "my-app")
+
 						helper.ExpectString(ctx, "[Ctrl+c] - Exit")
 						ctx.StopCommand()
 					})
@@ -173,6 +179,9 @@ var _ = Describe("odo dev interactive command tests", func() {
 
 					helper.ExpectString(ctx, "Enter component name")
 					helper.SendLine(ctx, "my-app")
+
+					helper.ExpectString(ctx, "Pod is Pending")
+					commonVar.CliRunner.EnsurePodIsUp(commonVar.Project, "my-app")
 
 					helper.ExpectString(ctx, "Building your application in container")
 					ctx.StopCommand()
