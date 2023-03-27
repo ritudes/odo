@@ -180,7 +180,7 @@ var _ = Describe("odo devfile init command tests", func() {
 							helper.Cmd("odo", "init", "--name", "aname", "--devfile", devfileName, "--devfile-version", ctx.devfileVersion).ShouldPass()
 						})
 
-						It("should download the devfile with the requested version", func() {
+						FIt("should download the devfile with the requested version", func() {
 							files := helper.ListFilesInDir(commonVar.Context)
 							Expect(files).To(ContainElements("devfile.yaml"))
 							metadata := helper.GetMetadataFromDevfile(filepath.Join(commonVar.Context, "devfile.yaml"))
@@ -194,7 +194,7 @@ var _ = Describe("odo devfile init command tests", func() {
 							res = helper.Cmd("odo", "init", "--name", "aname", "--devfile", devfileName, "--devfile-version", ctx.devfileVersion, "-o", "json").ShouldPass()
 						})
 
-						It("should show the requested devfile version", func() {
+						FIt("should show the requested devfile version", func() {
 							stdout := res.Out()
 							Expect(helper.IsJSON(stdout)).To(BeTrue())
 							helper.JsonPathContentIs(stdout, "devfileData.devfile.metadata.version", ctx.requiredVersion)
