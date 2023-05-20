@@ -24,6 +24,13 @@ jobs:
     - name: Build odo
       run: make install
 
+    - name: Pre-pull images
+      run: |
+        for img in $(yq '.components[] | select(has("container")).container.image' tests/examples/source/devfiles/**/*.yaml | grep -v -- '---' | sort | uniq)
+        do \
+          podman image pull $img || echo "[warn] unable to pull $img"
+        done
+
     - name: Run Integration tests
       env:
         # This should ideally be a configuration in the GH repo (secret or variable).
@@ -69,6 +76,13 @@ jobs:
 
     - name: Build odo
       run: make install
+
+    - name: Pre-pull images
+      run: |
+        for img in $(yq '.components[] | select(has("container")).container.image' tests/examples/source/devfiles/**/*.yaml | grep -v -- '---' | sort | uniq)
+        do \
+          podman image pull $img || echo "[warn] unable to pull $img"
+        done
 
     - name: Run Integration tests
       env:
