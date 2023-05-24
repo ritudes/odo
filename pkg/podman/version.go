@@ -114,6 +114,9 @@ func (o *PodmanCli) Version(ctx context.Context) (SystemVersionReport, error) {
 		}
 		return SystemVersionReport{}, fmt.Errorf("%v. Please check the output of the following command: %v", wErr, cmd.Args)
 	}
+	if result.Client == nil {
+		return result, fmt.Errorf("unable to determine Podman client version, got %v", result)
+	}
 
 	return result, nil
 }
