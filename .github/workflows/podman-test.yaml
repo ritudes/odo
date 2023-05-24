@@ -79,7 +79,6 @@ jobs:
         # Hopefully, variables (which are non-sensible by definition) will be passed to workflows triggered by PRs from forks.
         # See https://github.com/community/community/discussions/44322
         PODMAN_EXEC_NODES: 10
-        PODMAN_USE_NAMESPACES: 'false'
       run: make test-integration-podman
 
     - name: List and stop remaining containers
