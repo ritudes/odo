@@ -45,6 +45,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+    - name: Uninstall existing Podman and dependencies
+      run: |
+        sudo apt-get -y -q autoremove --purge podman
+
     - name: Install latest podman
       run: |
         sudo apt-get update -y -qq
