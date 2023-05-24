@@ -225,10 +225,9 @@ func CommonBeforeEach() CommonVar {
 				Expect(resetErr).ShouldNot(HaveOccurred())
 			})
 			Expect(os.Setenv("PODMAN_CMD_INIT_TIMEOUT", "30s")).ShouldNot(HaveOccurred())
-		}
 
-		if NeedsPodmanIsolation(specLabels) {
-			IsolatePodmanTest(commonVar.ConfigDir)
+			// Generate a dedicated containers.conf with a specific namespace
+			GenerateAndSetContainersConf(commonVar.ConfigDir)
 		}
 	}
 	commonVar.OriginalWorkingDirectory = Getwd()
@@ -305,10 +304,6 @@ func CommonAfterEach(commonVar CommonVar) {
 	Chdir(commonVar.OriginalWorkingDirectory)
 	err = os.Setenv("KUBECONFIG", commonVar.OriginalKubeconfig)
 	Expect(err).NotTo(HaveOccurred())
-
-	if NeedsPodmanIsolation(CurrentSpecReport().Labels()) {
-		CleanupIsolatedPodmanTest(commonVar.ConfigDir)
-	}
 
 	// delete the temporary context directory
 	DeleteDir(commonVar.Context)
