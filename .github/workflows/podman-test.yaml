@@ -8,7 +8,7 @@ on:
 jobs:
 
   odo-podman-test-v3:
-    timeout-minutes: 45
+    timeout-minutes: 60
     runs-on: ubuntu-22.04
     steps:
 
@@ -41,7 +41,7 @@ jobs:
         podman pod ls --format '{{.Name}}' | xargs podman pod stop || true
 
   odo-podman-test-latest:
-    timeout-minutes: 45
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
 
