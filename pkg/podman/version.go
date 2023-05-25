@@ -34,10 +34,16 @@ func (o *PodmanCli) Version(ctx context.Context) (SystemVersionReport, error) {
 	// it is expected to return in a timely manner (hence this configurable timeout).
 	// This is to avoid situations like the one described in https://github.com/redhat-developer/odo/issues/6575
 	// (where a podman CLI that takes too long to respond affects the "odo dev" command, even if the user did not intend to use the Podman platform).
-	ctxWithTimeout, cancel := context.WithTimeout(ctx, o.podmanCmdInitTimeout)
-	defer cancel()
+	cmdCtx := ctx
+	if o.podmanCmdInitTimeout <= 0 {
+		klog.V(3).Infof("PODMAN_CMD_INIT_TIMEOUT (%s) <= 0 => will wait indefinitely for command to return", o.podmanCmdInitTimeout.Round(time.Second))
+	} else {
+		var cancel context.CancelFunc
+		cmdCtx, cancel = context.WithTimeout(ctx, o.podmanCmdInitTimeout)
+		defer cancel()
+	}
 
-	cmd := exec.CommandContext(ctxWithTimeout, o.podmanCmd, "version", "--format", "json")
+	cmd := exec.CommandContext(cmdCtx, o.podmanCmd, "version", "--format", "json")
 	klog.V(3).Infof("executing %v", cmd.Args)
 
 	// Because cmd.Output() does not respect the context timeout (see https://github.com/golang/go/issues/57129),
@@ -95,7 +101,7 @@ func (o *PodmanCli) Version(ctx context.Context) (SystemVersionReport, error) {
 	wg.Wait()
 
 	if wErr != nil {
-		ctxErr := ctxWithTimeout.Err()
+		ctxErr := cmdCtx.Err()
 		if ctxErr != nil {
 			msg := "error"
 			if errors.Is(ctxErr, context.DeadlineExceeded) {
