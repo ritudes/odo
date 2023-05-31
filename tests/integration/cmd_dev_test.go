@@ -3612,7 +3612,8 @@ CMD ["npm", "start"]
 
 	for _, podman := range []bool{true, false} {
 		podman := podman
-		When("a hotReload capable Run command is used with odo dev", helper.LabelPodmanIf(podman, func() {
+		//TODO: to remove
+		When("XXX a hotReload capable Run command is used with odo dev", helper.LabelPodmanIf(podman, func() {
 			var devSession helper.DevSession
 			var stdout []byte
 			var executeRunCommand = "Executing the application (command: dev-run)"

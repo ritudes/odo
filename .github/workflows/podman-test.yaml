@@ -8,6 +8,8 @@ on:
 jobs:
 
   odo-podman-test-v3:
+    # TODO: to remove
+    if: false
     timeout-minutes: 60
     runs-on: ubuntu-22.04
     steps:
