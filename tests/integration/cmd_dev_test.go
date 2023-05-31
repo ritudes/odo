@@ -3639,7 +3639,7 @@ CMD ["npm", "start"]
 				Expect(string(stdout)).To(ContainSubstring(executeRunCommand))
 			})
 
-			When("a source file is modified", func() {
+			When("XXX a source file is modified", func() {
 				BeforeEach(func() {
 					helper.ReplaceString(filepath.Join(commonVar.Context, "src", "main", "java", "org", "acme", "GreetingResource.java"), "Hello RESTEasy", "Hi RESTEasy")
 					var err error
