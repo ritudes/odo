@@ -55,7 +55,7 @@ var _ = Describe("odo dev command tests", func() {
 		helper.CommonAfterEach(commonVar)
 	})
 
-	When("directory is empty", func() {
+	When("XXX directory is empty", func() {
 
 		BeforeEach(func() {
 			Expect(helper.ListFilesInDir(commonVar.Context)).To(HaveLen(0))
@@ -68,7 +68,7 @@ var _ = Describe("odo dev command tests", func() {
 		})
 	})
 
-	When("a component is bootstrapped", func() {
+	When("XXX a component is bootstrapped", func() {
 		BeforeEach(func() {
 			helper.CopyExample(filepath.Join("source", "devfiles", "nodejs", "project"), commonVar.Context)
 			helper.Cmd("odo", "init", "--name", cmpName, "--devfile-path", helper.GetExamplePath("source", "devfiles", "nodejs", "devfile.yaml")).ShouldPass()
