@@ -55,7 +55,7 @@ var _ = Describe("odo dev command tests", func() {
 		helper.CommonAfterEach(commonVar)
 	})
 
-	When("directory is empty", func() {
+	When("XXX directory is empty", func() {
 
 		BeforeEach(func() {
 			Expect(helper.ListFilesInDir(commonVar.Context)).To(HaveLen(0))
@@ -124,7 +124,7 @@ echo "$@"
 			Expect(string(stderrBytes)).Should(MatchRegexp("timeout \\([^()]+\\) while waiting for Podman version"))
 		})
 
-		When("using a default namespace", func() {
+		When("XXX using a default namespace", func() {
 			BeforeEach(func() {
 				commonVar.CliRunner.SetProject("default")
 			})
@@ -295,7 +295,7 @@ echo "$@"
 			Expect(err).ToNot(HaveOccurred())
 		})
 
-		When("pod security is enforced as restricted", func() {
+		When("XXX pod security is enforced as restricted", func() {
 			BeforeEach(func() {
 				commonVar.CliRunner.SetLabelsOnNamespace(
 					commonVar.Project,
@@ -318,7 +318,7 @@ echo "$@"
 			})
 		})
 
-		When("a state file is not writable", func() {
+		When("XXX a state file is not writable", func() {
 			BeforeEach(func() {
 				stateFile := filepath.Join(commonVar.Context, ".odo", "devstate.json")
 				helper.MakeDir(filepath.Dir(stateFile))
@@ -336,7 +336,7 @@ echo "$@"
 
 		for _, podman := range []bool{true, false} {
 			podman := podman
-			When("recording telemetry data", helper.LabelPodmanIf(podman, func() {
+			When("XXX recording telemetry data", helper.LabelPodmanIf(podman, func() {
 				BeforeEach(func() {
 					helper.EnableTelemetryDebug()
 					session, _, _, _, _ := helper.StartDevMode(helper.DevSessionOpts{
