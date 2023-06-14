@@ -124,7 +124,7 @@ echo "$@"
 			Expect(string(stderrBytes)).Should(MatchRegexp("timeout \\([^()]+\\) while waiting for Podman version"))
 		})
 
-		When("XXX using a default namespace", func() {
+		When("using a default namespace", func() {
 			BeforeEach(func() {
 				commonVar.CliRunner.SetProject("default")
 			})
@@ -295,7 +295,7 @@ echo "$@"
 			Expect(err).ToNot(HaveOccurred())
 		})
 
-		When("XXX pod security is enforced as restricted", func() {
+		When("pod security is enforced as restricted", func() {
 			BeforeEach(func() {
 				commonVar.CliRunner.SetLabelsOnNamespace(
 					commonVar.Project,
@@ -318,7 +318,7 @@ echo "$@"
 			})
 		})
 
-		When("XXX a state file is not writable", func() {
+		When("a state file is not writable", func() {
 			BeforeEach(func() {
 				stateFile := filepath.Join(commonVar.Context, ".odo", "devstate.json")
 				helper.MakeDir(filepath.Dir(stateFile))
@@ -336,7 +336,7 @@ echo "$@"
 
 		for _, podman := range []bool{true, false} {
 			podman := podman
-			When("XXX recording telemetry data", helper.LabelPodmanIf(podman, func() {
+			When("recording telemetry data", helper.LabelPodmanIf(podman, func() {
 				BeforeEach(func() {
 					helper.EnableTelemetryDebug()
 					session, _, _, _, _ := helper.StartDevMode(helper.DevSessionOpts{
@@ -3302,7 +3302,7 @@ CMD ["npm", "start"]
 
 	// Test reused and adapted from the now-removed `cmd_devfile_delete_test.go`.
 	// cf. https://github.com/redhat-developer/odo/blob/24fd02673d25eb4c7bb166ec3369554a8e64b59c/tests/integration/devfile/cmd_devfile_delete_test.go#L172-L238
-	When("a component with endpoints is bootstrapped and pushed", func() {
+	When("XXX a component with endpoints is bootstrapped and pushed", func() {
 
 		var devSession helper.DevSession
 
@@ -3568,7 +3568,7 @@ CMD ["npm", "start"]
 		}))
 	}
 
-	When("using devfile that contains K8s resource to run it on podman", Label(helper.LabelPodman), func() {
+	When("XXX using devfile that contains K8s resource to run it on podman", Label(helper.LabelPodman), func() {
 		const (
 			imgName = "quay.io/unknown-account/myimage" // hard coded from the devfile-composite-apply-different-commandgk.yaml
 		)
@@ -3613,7 +3613,7 @@ CMD ["npm", "start"]
 	for _, podman := range []bool{true, false} {
 		podman := podman
 		//TODO: to remove
-		When("XXX a hotReload capable Run command is used with odo dev", helper.LabelPodmanIf(podman, func() {
+		When("a hotReload capable Run command is used with odo dev", helper.LabelPodmanIf(podman, func() {
 			var devSession helper.DevSession
 			var stdout []byte
 			var executeRunCommand = "Executing the application (command: dev-run)"
@@ -3639,7 +3639,7 @@ CMD ["npm", "start"]
 				Expect(string(stdout)).To(ContainSubstring(executeRunCommand))
 			})
 
-			When("XXX a source file is modified", func() {
+			When("a source file is modified", func() {
 				BeforeEach(func() {
 					helper.ReplaceString(filepath.Join(commonVar.Context, "src", "main", "java", "org", "acme", "GreetingResource.java"), "Hello RESTEasy", "Hi RESTEasy")
 					var err error
@@ -3654,7 +3654,7 @@ CMD ["npm", "start"]
 			})
 		}))
 
-		When("XXX hotReload capable Build and Run commands are used with odo dev", helper.LabelPodmanIf(podman, func() {
+		When("hotReload capable Build and Run commands are used with odo dev", helper.LabelPodmanIf(podman, func() {
 			var devSession helper.DevSession
 			var stdout []byte
 			var executeRunCommand = "Executing the application (command: run)"
@@ -4043,7 +4043,7 @@ CMD ["npm", "start"]
 		})
 	})
 
-	When("running applications listening on the container loopback interface", func() {
+	When("XXX running applications listening on the container loopback interface", func() {
 
 		BeforeEach(func() {
 			helper.CopyExample(filepath.Join("source", "devfiles", "nodejs", "project-with-endpoint-on-loopback"), commonVar.Context)
