@@ -55,7 +55,7 @@ var _ = Describe("odo dev command tests", func() {
 		helper.CommonAfterEach(commonVar)
 	})
 
-	When("XXX directory is empty", func() {
+	When("directory is empty", func() {
 
 		BeforeEach(func() {
 			Expect(helper.ListFilesInDir(commonVar.Context)).To(HaveLen(0))
@@ -68,7 +68,7 @@ var _ = Describe("odo dev command tests", func() {
 		})
 	})
 
-	When("XXX a component is bootstrapped", func() {
+	When("a component is bootstrapped", func() {
 		BeforeEach(func() {
 			helper.CopyExample(filepath.Join("source", "devfiles", "nodejs", "project"), commonVar.Context)
 			helper.Cmd("odo", "init", "--name", cmpName, "--devfile-path", helper.GetExamplePath("source", "devfiles", "nodejs", "devfile.yaml")).ShouldPass()
@@ -3302,7 +3302,7 @@ CMD ["npm", "start"]
 
 	// Test reused and adapted from the now-removed `cmd_devfile_delete_test.go`.
 	// cf. https://github.com/redhat-developer/odo/blob/24fd02673d25eb4c7bb166ec3369554a8e64b59c/tests/integration/devfile/cmd_devfile_delete_test.go#L172-L238
-	When("XXX a component with endpoints is bootstrapped and pushed", func() {
+	When("a component with endpoints is bootstrapped and pushed", func() {
 
 		var devSession helper.DevSession
 
@@ -3568,7 +3568,7 @@ CMD ["npm", "start"]
 		}))
 	}
 
-	When("XXX using devfile that contains K8s resource to run it on podman", Label(helper.LabelPodman), func() {
+	When("using devfile that contains K8s resource to run it on podman", Label(helper.LabelPodman), func() {
 		const (
 			imgName = "quay.io/unknown-account/myimage" // hard coded from the devfile-composite-apply-different-commandgk.yaml
 		)
@@ -4043,7 +4043,7 @@ CMD ["npm", "start"]
 		})
 	})
 
-	When("XXX running applications listening on the container loopback interface", func() {
+	When("running applications listening on the container loopback interface", func() {
 
 		BeforeEach(func() {
 			helper.CopyExample(filepath.Join("source", "devfiles", "nodejs", "project-with-endpoint-on-loopback"), commonVar.Context)
