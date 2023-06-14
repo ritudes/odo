@@ -55,7 +55,7 @@ var _ = Describe("odo dev command tests", func() {
 		helper.CommonAfterEach(commonVar)
 	})
 
-	When("XXX directory is empty", func() {
+	When("directory is empty", func() {
 
 		BeforeEach(func() {
 			Expect(helper.ListFilesInDir(commonVar.Context)).To(HaveLen(0))
@@ -3654,7 +3654,7 @@ CMD ["npm", "start"]
 			})
 		}))
 
-		When("hotReload capable Build and Run commands are used with odo dev", helper.LabelPodmanIf(podman, func() {
+		When("XXX hotReload capable Build and Run commands are used with odo dev", helper.LabelPodmanIf(podman, func() {
 			var devSession helper.DevSession
 			var stdout []byte
 			var executeRunCommand = "Executing the application (command: run)"
