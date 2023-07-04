@@ -220,8 +220,8 @@ test-integration-no-cluster:
 .PHONY: test-integration-podman
 test-integration-podman:
 	# TODO: to remove
-	$(RUN_GINKGO) $(GINKGO_FLAGS_PODMAN) --junit-report="test-integration-podman.xml" --label-filter="podman && odolist" tests/integration
-	$(RUN_GINKGO) $(GINKGO_FLAGS_PODMAN) --junit-report="test-integration-podman.xml" --label-filter="podman && !odolist" tests/integration
+	$(RUN_GINKGO) $(GINKGO_FLAGS_PODMAN) --junit-report="test-integration-podman.xml" --label-filter="podman && odolist && describecomponent" tests/integration
+	$(RUN_GINKGO) $(GINKGO_FLAGS_PODMAN) --junit-report="test-integration-podman.xml" --label-filter="podman && !odolist && !describecomponent" tests/integration
 
 .PHONY: test-integration
 test-integration: test-integration-no-cluster test-integration-cluster
