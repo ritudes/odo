@@ -86,7 +86,7 @@ jobs:
         # This is currently hard-coded because GH won't expose secrets or variables to PRs created from forks.
         # Hopefully, variables (which are non-sensible by definition) will be passed to workflows triggered by PRs from forks.
         # See https://github.com/community/community/discussions/44322
-        PODMAN_EXEC_NODES: 10
+        PODMAN_EXEC_NODES: 5
       run: make test-integration-podman
 
     - name: List and stop remaining containers
