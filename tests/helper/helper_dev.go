@@ -156,7 +156,7 @@ func StartDevMode(options DevSessionOpts) (devSession DevSession, out []byte, er
 	cmd.Cmd.Stderr = c.Tty()
 
 	session := cmd.AddEnv(options.EnvVars...).Runner().session
-	timeoutInSeconds := 420
+	timeoutInSeconds := 600
 	if options.TimeoutInSeconds != 0 {
 		timeoutInSeconds = options.TimeoutInSeconds
 	}
