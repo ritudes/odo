@@ -14,7 +14,7 @@ import (
 	. "github.com/onsi/gomega"
 )
 
-var _ = Describe("odo list with devfile", func() {
+var _ = Describe("odo list with devfile", Label("odolist"), func() {
 	var commonVar helper.CommonVar
 
 	// This is run before every Spec (It)
@@ -228,7 +228,9 @@ var _ = Describe("odo list with devfile", func() {
 			})
 		})
 
-		When("dev is running on podman", Label(helper.LabelPodman), func() {
+		// Those tests are decorated as Serial, so they do not run in parallel with other specs.
+		// Otherwise, 'odo list' might list resources created by other specs.
+		When("dev is running on podman", Label(helper.LabelPodman), Serial, func() {
 			BeforeEach(func() {
 				var err error
 				devSession, _, _, _, err = helper.StartDevMode(helper.DevSessionOpts{

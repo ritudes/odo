@@ -3616,6 +3616,7 @@ CMD ["npm", "start"]
 
 	for _, podman := range []bool{true, false} {
 		podman := podman
+		//TODO: to remove
 		When("a hotReload capable Run command is used with odo dev", helper.LabelPodmanIf(podman, func() {
 			var devSession helper.DevSession
 			var stdout []byte

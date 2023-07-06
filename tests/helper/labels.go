@@ -40,11 +40,15 @@ func IsAuth(labels []string) bool {
 	return true
 }
 
-func LabelPodmanIf(value bool, args ...interface{}) []interface{} {
-	res := []interface{}{}
+func MarkWithIf(value bool, markers []interface{}, args ...interface{}) []interface{} {
+	var res []interface{}
 	if value {
-		res = append(res, ginkgo.Label(LabelPodman))
+		res = append(res, markers...)
 	}
 	res = append(res, args...)
 	return res
+}
+
+func LabelPodmanIf(value bool, args ...interface{}) []interface{} {
+	return MarkWithIf(value, []interface{}{ginkgo.Label(LabelPodman)}, args)
 }

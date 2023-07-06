@@ -224,10 +224,10 @@ func CommonBeforeEach() CommonVar {
 				}
 				Expect(resetErr).ShouldNot(HaveOccurred())
 			})
-			Expect(os.Setenv("PODMAN_CMD_INIT_TIMEOUT", "30s")).ShouldNot(HaveOccurred())
-
-			// Generate a dedicated containers.conf with a specific namespace
-			GenerateAndSetContainersConf(commonVar.ConfigDir)
+			// Not setting a timeout on Podman initialization by default.
+			// On some environments, this initialization might take longer than expected.
+			// Anyway, most of the tests on Podman have a timeout waiting for some output to be returned.
+			Expect(os.Setenv("PODMAN_CMD_INIT_TIMEOUT", "-1s")).ShouldNot(HaveOccurred())
 		}
 	}
 	commonVar.OriginalWorkingDirectory = Getwd()

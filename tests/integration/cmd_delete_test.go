@@ -225,7 +225,7 @@ var _ = Describe("odo delete command tests", func() {
 
 			for _, podman := range []bool{true, false} {
 				podman := podman
-				When("the component is deployed in DEV mode and dev mode stopped", helper.LabelPodmanIf(podman, func() {
+				When("the component is deployed in DEV mode and dev mode stopped", helper.MarkWithIf(podman, []interface{}{Label(helper.LabelPodman), Serial}, func() {
 					var devSession helper.DevSession
 					BeforeEach(func() {
 						var err error
